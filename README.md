@@ -13,4 +13,17 @@ Social app project in Python language using Django REST framework
 :small_orange_diamond: Backend: Django 5.1.2 [:arrow_forward:](https://docs.djangoproject.com/en/5.1/releases/5.1.2/) </br>
 :small_orange_diamond: API: django REST framework 3.15.2 [:arrow_forward:](https://www.django-rest-framework.org) </br>
 
+## Project structure 
+```
+project/
+│
+├── project         # Project-level settings and configuration
+├── apps            # Contains all apps used in project 
+│   ├── core        # App will contain core features
+│   ├── users       # App will contain all user features
+├── static          # contains subfolders with styles of templates
+```
+to set static in project just write inside settings.py this line:
+```STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]``` 
+
 
