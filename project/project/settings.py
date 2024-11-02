@@ -17,8 +17,8 @@ from pathlib import Path
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = Path(__file__).resolve().parent.parent
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+print("BASE_DIR is", PROJECT_ROOT)
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -46,9 +47,11 @@ INSTALLED_APPS = [
     "rest_framework",
     # if u wish to use apps form subfoldersjust rename variable name
     # in each app u wish to example: name=apps.newapp and use it here
-    "apps.core", 
-    "apps.users"
+    "core", 
+    "users"
 ]
+
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -121,6 +124,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# CUSTOM AUTHENTICATION
+
+# AUTH_USER_MODEL - Lets our project know we changed default auth user model
+# AUTHENTICATION_BACKENDS - Changing standard behaviour of authentication
+AUTH_USER_MODEL = 'users.CustomUser' 
+AUTHENTICATION_BACKENDS = [
+    'users.backends.UsernameOrEmailBackend',  # Your custom backend
+    'django.contrib.auth.backends.ModelBackend',  # Default backend
+] # nowy 
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
@@ -137,7 +149,25 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = "static/"
+
+#STATIC_URL = prefix or URL prepend to your static files 
+#STATICFILES_DIRS - django will search here for static files
+#STATIC_ROOT - folder where static files will be stored after using manage.py
+#MEDIA ROOT - folder where files uploaded using FileField will go
+STATIC_URL = 'static/'
+STATICFILES_DIRS = [ # Here
+    BASE_DIR / 'core/static/', 
+    BASE_DIR / 'users/static'
+]
+#STATICFILES_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_ROOT = BASE_DIR / "static" 
+MEDIA_ROOT = BASE_DIR / "media"
+
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'),
+)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

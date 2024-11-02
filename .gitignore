@@ -163,3 +163,4 @@ cython_debug/
 
 # Testing purposue files not necessary to use in work code
 test.py
+static/

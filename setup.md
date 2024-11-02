@@ -25,6 +25,7 @@ co dokładnie ma zostać wyrenderowane.
 
 
 # Opis struktury przykładowego projektu DJANGO 
+```
 myproject/
 │
 ├── manage.py                   # Script for running Django commands
@@ -69,7 +70,7 @@ myproject/
         ├── __init__.py          # Makes utils a package
         ├── helpers.py           # Helper functions
         └── validators.py        # Custom validators
-
+```
 
 ## Tworzymy konto użytkownika dla naszej bazy danych
 CREATE USER 'admin'@'localhost' IDENTIFIED BY '**********';
