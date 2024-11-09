@@ -137,7 +137,7 @@ AUTHENTICATION_BACKENDS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "pl"
 
 TIME_ZONE = "UTC"
 
@@ -158,7 +158,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [ # Here
     BASE_DIR / 'core/static/', 
     BASE_DIR / 'users/static',
-    BASE_DIR / 'project/static'
+    BASE_DIR / 'project/static',
 ]
 #STATICFILES_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_ROOT = BASE_DIR / "static" 
