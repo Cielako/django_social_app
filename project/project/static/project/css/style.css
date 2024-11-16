@@ -41,6 +41,19 @@ body, html {
     color: #FFD700;
 }
 
+.logout-form button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.logout-form button:hover {
+    color: #FFD700;
+}
+
 /* Sekcja pełnoekranowa */
 .hero-section {
     display: flex;

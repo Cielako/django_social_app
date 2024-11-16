@@ -17,7 +17,26 @@
         <li><a href="#">Usługi</a></li>
         <li><a href="#">Kontakt</a></li>
         <li>|</li>
-        <li><a href="{% url 'register' %}">Utwórz konto</a></li>
+        {% if user.is_authenticated %}
+            <!-- Jeśli użytkownik jest zalogowany, wyświetl "Panel użytkownika" -->
+            <li><a href="{% url 'user' %}">Panel użytkownika</a></li>
+        {% else %}
+            <!-- Jeśli użytkownik nie jest zalogowany, wyświetl "Utwórz konto" -->
+            <li><a href="{% url 'register' %}">Utwórz konto</a></li>
+            <li><a href="{% url 'login' %}">Zaloguj się</a></li>
+        {% endif %}
+        
+        {% if user.is_authenticated %}
+            <!-- Jeśli użytkownik jest zalogowany, wyświetl link do wylogowania -->
+            <li>
+                <form action="{% url 'logout' %}" method="post" class="logout-form" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-button">
+                        Wyloguj się
+                    </button>
+                </form>
+            </li>
+        {% endif %}
     </ul>
 </nav>
 

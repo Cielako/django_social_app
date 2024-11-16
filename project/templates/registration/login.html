@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Logowanie</title>
+</head>
+<body>
+    <h2>Zaloguj się</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Zaloguj się</button>
+    </form>
+    <p>Nie masz konta? <a href="{% url 'register' %}">Zarejestruj się</a></p>
+
+    {% if next %}
+        <input type="hidden" name="next" value="{{ next }}" />  <!-- Strona logowania otworzy się użytkownikowi, kiedy chce wejść na stronę, an której ma być zalogowany. Po pomyślnym logowaniu nie wejdzie do panelu użytkownika, tylko na stronę, na którą próbował wejść wcześniej. -->
+    {% endif %}
+</body>
+</html>
