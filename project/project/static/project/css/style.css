@@ -12,6 +12,10 @@ body, html {
     overflow-x: hidden;
 }
 
+::-webkit-scrollbar {
+    display: none;  /* Ukrywa pasek przewijania */
+}
+
 /* Stylizacja nawigacji */
 .navbar {
     display: flex;
