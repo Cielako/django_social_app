@@ -145,6 +145,8 @@ LOGIN_URL = 'login'
 
 LOGOUT_REDIRECT_URL = '/'
 
+SESSION_COOKIE_AGE = 7 * 24 * 60 * 60
+
 TIME_ZONE = "UTC"
 
 USE_I18N = True

@@ -20,41 +20,60 @@ body, html {
 .navbar {
     display: flex;
     justify-content: center;
-    padding: 20px 0;
+    padding: 15px 0; /* Zmniejszony padding dla lepszego wyglądu */
     position: fixed;
     width: 100%;
     top: 0;
-    z-index: 10;
-    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 100; /* Zwiększony z-index dla priorytetu */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.3)); /* Gradient */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Lekki cień dla głębi */
+    backdrop-filter: blur(10px); /* Efekt rozmycia */
 }
 
+/* Stylizacja listy */
 .navbar ul {
     list-style: none;
     display: flex;
     gap: 20px;
 }
 
+/* Styl linków */
 .navbar ul li a {
     text-decoration: none;
     color: white;
     font-size: 1.2em;
-    transition: color 0.3s;
+    font-weight: 500; /* Trochę grubsza czcionka */
+    transition: color 0.3s, transform 0.2s;
 }
 
+/* Efekt hover na linkach */
 .navbar ul li a:hover {
     color: #FFD700;
+    transform: scale(1.1); /* Powiększenie przy najechaniu */
 }
 
-.logout-form button {
+/* Efekt aktywnego linku */
+.navbar ul li a.active {
+    color: #FFD700;
+    font-weight: bold;
+    border-bottom: 2px solid #FFD700; /* Podkreślenie aktywnego linku */
+}
+
+
+/* Stylizacja wspólna dla przycisków logowania i wylogowania */
+.auth-button {
     background: none;
     border: none;
     color: white;
     font-size: 1.2em;
     cursor: pointer;
     transition: color 0.3s;
+    font-family: inherit; /* Zachowuje styl czcionki navbar */
+    text-decoration: none; /* Wygląd jak link */
 }
 
-.logout-form button:hover {
+/* Efekt hover dla przycisków */
+.auth-button:hover {
     color: #FFD700;
 }
 
@@ -170,4 +189,126 @@ body, html {
 
 .footer-column a:hover {
     color: #FFD700;
+}
+
+/* Ukrycie modala domyślnie */
+.modal {
+    display: none; /* Modal jest domyślnie niewidoczny */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Blokowanie przewijania */
+}
+
+/* Treść modala */
+.modal-content {
+    background-color: white;
+    padding: 30px 40px;
+    border-radius: 8px;
+    text-align: center;
+    width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+/* Zamknięcie modala */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-btn:hover {
+    color: #FFD700;
+}
+
+/* Formularz w modal */
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Stylizacja pól tekstowych */
+.modal-content .form-group input[type="text"],
+.modal-content .form-group input[type="password"] {
+    width: 100%;
+    padding: 10px 15px;
+    border: 2px solid #FFD700;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-family: Arial, sans-serif;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Efekt hover i focus dla pól tekstowych */
+.modal-content .form-group input[type="text"]:focus,
+.modal-content .form-group input[type="password"]:focus {
+    border-color: #FFC107;
+    box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+    outline: none;
+}
+
+/* Checkbox */
+.modal-content .form-group.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1em;
+    color: #333;
+}
+
+.modal-content .form-group.remember-me input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+/* Przycisk logowania */
+.submit-button {
+    background-color: #FFD700;
+    color: black;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.2em;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.2s;
+    display: block;
+    width: 100%;
+}
+
+.submit-button:hover {
+    background-color: #FFC107;
+    transform: scale(1.05); /* Powiększenie przy najechaniu */
+}
+
+/* Stylizacja tekstu w modal */
+.modal-content h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.modal-content label {
+    font-size: 1em;
+    color: #555;
+    text-align: left;
+}
+
+/* Zapobieganie przewijaniu strony w tle */
+body.modal-open {
+    overflow: hidden;
 }

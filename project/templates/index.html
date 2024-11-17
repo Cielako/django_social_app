@@ -12,10 +12,10 @@
 
 <nav class="navbar">
     <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">O nas</a></li>
-        <li><a href="#">Usługi</a></li>
-        <li><a href="#">Kontakt</a></li>
+        <li><a href="#">Strona główna</a></li>
+        <li><a href="#">Aplikacja</a></li>
+        <li><a href="#">Cel</a></li>
+        <li><a href="#">Do pobrania</a></li>
         <li>|</li>
         {% if user.is_authenticated %}
             <!-- Jeśli użytkownik jest zalogowany, wyświetl "Panel użytkownika" -->
@@ -23,7 +23,7 @@
         {% else %}
             <!-- Jeśli użytkownik nie jest zalogowany, wyświetl "Utwórz konto" -->
             <li><a href="{% url 'register' %}">Utwórz konto</a></li>
-            <li><a href="{% url 'login' %}">Zaloguj się</a></li>
+            <li><button id="openModal" class="auth-button">Zaloguj się</button></li>
         {% endif %}
         
         {% if user.is_authenticated %}
@@ -31,7 +31,7 @@
             <li>
                 <form action="{% url 'logout' %}" method="post" class="logout-form" style="display:inline;">
                     {% csrf_token %}
-                    <button type="submit" class="logout-button">
+                    <button type="submit" class="auth-button">
                         Wyloguj się
                     </button>
                 </form>
@@ -39,6 +39,30 @@
         {% endif %}
     </ul>
 </nav>
+
+<!-- Okienko z formularzem logowania -->
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Zaloguj się</h2>
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Nazwa użytkownika</label>
+                <input type="text" id="username" name="username" placeholder="Wpisz nazwę użytkownika" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Hasło</label>
+                <input type="password" id="password" name="password" placeholder="Wpisz hasło" required>
+            </div>
+            <div class="form-group remember-me">
+                <input type="checkbox" id="remember_me" name="remember_me">
+                <label for="remember_me">Zapamiętaj mnie</label>
+            </div>
+            <button type="submit" class="submit-button">Zaloguj się</button>
+        </form>
+    </div>
+</div>
 
 <!-- Sekcja pełnoekranowa (hero) z nagłówkiem na środku -->
 <div class="hero-section">
@@ -81,6 +105,33 @@
         <p><a href="#">Twitter</a></p>
     </div>
 </div>
+
+<script>
+    // Pobranie elementów modalnych
+    const modal = document.getElementById("loginModal");
+    const openModalButton = document.getElementById("openModal");
+    const closeModalButton = document.querySelector(".close-btn");
+
+    // Funkcja otwierania modala
+    openModalButton.addEventListener("click", () => {
+        modal.style.display = "flex"; // Wyświetla modal
+        document.body.style.overflow = "hidden"; // Blokuje przewijanie
+    });
+
+    // Funkcja zamykania modala
+    closeModalButton.addEventListener("click", () => {
+        modal.style.display = "none"; // Ukrywa modal
+        document.body.style.overflow = "auto"; // Przywraca przewijanie
+    });
+
+    // Zamykanie modala po kliknięciu w tło
+    window.addEventListener("click", (e) => {
+        if (e.target === modal) {
+            modal.style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+    });
+</script>
 
 </body>
 </html>
