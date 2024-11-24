@@ -24,4 +24,5 @@ urlpatterns = [
     path('', core_views.index,name="index"),
     path('index/', core_views.index,name="index"),
     path('users/', include('users.urls')),
+    path('panel/', include('user_panel.urls')),
 ]

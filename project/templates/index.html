@@ -19,7 +19,7 @@
         <li>|</li>
         {% if user.is_authenticated %}
             <!-- Jeśli użytkownik jest zalogowany, wyświetl "Panel użytkownika" -->
-            <li><a href="{% url 'user' %}">Panel użytkownika</a></li>
+            <li><a href="{% url 'user_dashboard' %}">Panel użytkownika</a></li>
         {% else %}
             <!-- Jeśli użytkownik nie jest zalogowany, wyświetl "Utwórz konto" -->
             <li><a href="{% url 'register' %}">Utwórz konto</a></li>

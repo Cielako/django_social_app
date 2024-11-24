@@ -1,0 +1,15 @@
+{% extends 'user_panel/base_panel.html' %}
+
+{% block title %}Twój panel{% endblock %}
+
+{% block content %}
+<h2>Rozmowa z Jan Kowalski</h2>
+<div class="messages">
+    <!-- <p><strong>Jan:</strong> Witaj, jak się masz?</p>
+    <p><strong>Ty:</strong> Wszystko w porządku, dzięki!</p> -->
+</div>
+<form class="message-form">
+    <input type="text" placeholder="Napisz wiadomość..." />
+    <button type="submit"><i class="fas fa-paper-plane"></i></button>
+</form>
+{% endblock %}

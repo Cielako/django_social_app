@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Panel użytkownika{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'user_panel/css/style.css' %}">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-left">
+            <h1>Panel</h1>
+        </div>
+        <div class="navbar-right">
+            <span class="user-name">Witaj, {{ user.first_name }}</span>
+            <div class="profile-picture" onclick="toggleMenu()">
+                {% if user.profile.picture %}
+                    <img src="{{ user.profile.picture.url }}" alt="Profile Picture">
+                {% else %}
+                    <div class="default-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                {% endif %}
+            </div>
+            
+            <div class="dropdown-menu" id="dropdownMenu">
+                <ul>
+                    <li><a href="#">Ustawienia konta</a></li>
+                    <li>
+                        <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="logout-btn">Wyloguj się</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <aside class="messages-list">
+            <h2>Wiadomości</h2>
+            <ul>
+                <!-- Placeholder for conversations -->
+                <!-- niżej przykładowe style do aktywnych i nieaktywnych rozmów -->
+                <!-- <li class="conversation active">Jan Kowalski</li>
+                <li class="conversation">Anna Nowak</li>
+                <li class="conversation">Michał Wiśniewski</li> -->
+            </ul>
+        </aside>
+        <section class="chat-section">
+            {% block content %}
+            <h2>Wybierz rozmowę</h2>
+            <p>Wybierz rozmówcę z lewej, aby wyświetlić wiadomości.</p>
+            {% endblock %}
+        </section>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const dropdown = document.getElementById('dropdownMenu');
+            dropdown.classList.toggle('open');
+        }
+    </script>
+</body>
+</html>

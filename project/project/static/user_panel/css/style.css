@@ -1,0 +1,231 @@
+/* Global Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #171717;
+    color: white;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: linear-gradient(to bottom, #171717, #212121);
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-left h1 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #FFD700;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-name {
+    font-size: 1em;
+    color: white;
+}
+
+.profile-picture {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.profile-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-picture:hover {
+    transform: scale(1.1);
+}
+
+.default-icon {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFC107; /* Tło ikony */
+}
+
+.default-icon i {
+    font-size: 1.5em; /* Rozmiar ikony */
+    color: #171717; /* Kolor ikony */
+}
+
+/* Menu użytkownika w panelu */
+.dropdown-menu {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background: #212121;
+    border: 1px solid #FFD700;
+    border-radius: 5px;
+    display: none;
+    flex-direction: column;
+    z-index: 100;
+}
+
+.dropdown-menu.open {
+    display: flex;
+}
+
+.dropdown-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 10px 0;
+}
+
+.dropdown-menu ul li {
+    padding: 10px 20px;
+}
+
+.dropdown-menu ul li a,
+.logout-btn {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 1em;
+    display: block;
+    width: 100%;
+    text-align: left;
+}
+
+.dropdown-menu ul li a:hover,
+.logout-btn:hover {
+    color: #FFD700;
+}
+
+/* Main Content */
+.main-content {
+    display: flex;
+    height: calc(100vh - 60px);
+}
+
+/* Messages List */
+.messages-list {
+    width: 20%;
+    background: #212121;
+    padding: 20px;
+    border-right: 2px solid #FFD700;
+    overflow-y: auto;
+}
+
+.messages-list h2 {
+    margin-bottom: 10px;
+    font-size: 1.3em;
+    color: #FFD700;
+}
+
+.messages-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.messages-list .conversation {
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    background: #171717;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.messages-list .conversation:hover {
+    background: #333;
+}
+
+.messages-list .conversation.active {
+    background: #FFD700;
+    color: #171717;
+}
+
+/* Chat Section */
+
+.chat-section {
+    position: relative; /* Aby formularz był pozycjonowany względem sekcji */
+    padding-bottom: 80px; /* Miejsce na formularz */
+    width: 80%;
+    overflow-y: auto;
+    background: #212121;
+}
+
+.chat-section h2 {
+    margin-top: 20px;
+    margin-left: 20px;
+    color: white;
+}
+
+/* Miejsce do wpisywania wyadomości w chacie */
+
+.message-form {
+    position: absolute;
+    bottom: 20px; /* Formularz na dole sekcji */
+    left: 50%; /* Wyśrodkowanie w sekcji */
+    transform: translateX(-50%);
+    width: 70%;
+    display: flex;
+    gap: 10px;
+    background: #171717;
+    padding: 10px;
+    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.message-form input[type="text"] {
+    flex: 1;
+    padding: 10px 15px;
+    font-size: 1em;
+    border: 2px solid #212121;
+    border-radius: 20px;
+    background-color: #212121;
+    color: white;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.message-form input[type="text"]:focus {
+    border-color: #FFD700;
+}
+
+.message-form button {
+    padding: 10px 15px;
+    font-size: 1em;
+    border: none;
+    border-radius: 50%; /* Przycisk w formie kółka */
+    background-color: #FFD700;
+    color: #171717;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.message-form button:hover {
+    background-color: #FFC107;
+    transform: scale(1.1);
+}
+
+.message-form button i {
+    margin: 0; /* Ikona ma być wyśrodkowana */
+    font-size: 1.2em;
+}

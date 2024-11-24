@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     # if u wish to use apps form subfoldersjust rename variable name
     # in each app u wish to example: name=apps.newapp and use it here
     "core", 
-    "users"
+    "users",
+    "user_panel"
 ]
 
 
@@ -139,7 +140,7 @@ AUTHENTICATION_BACKENDS = [
 
 LANGUAGE_CODE = "pl"
 
-LOGIN_REDIRECT_URL = 'user'
+LOGIN_REDIRECT_URL = 'user_dashboard'
 
 LOGIN_URL = 'login'
 
@@ -167,6 +168,7 @@ STATICFILES_DIRS = [ # Here
     BASE_DIR / 'core/static/', 
     BASE_DIR / 'users/static',
     BASE_DIR / 'project/static',
+    BASE_DIR / 'user_panel/static',
 ]
 #STATICFILES_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_ROOT = BASE_DIR / "static" 
