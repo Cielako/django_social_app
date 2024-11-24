@@ -15,13 +15,15 @@ Social app project in Python language using Django REST framework
 
 ## Project structure 
 ```
-project/
+project/            # Main project directory - all necessary files
 │
+├── core            # App module - core features
+├── media/          # Directory for media type files
 ├── project         # Project-level settings and configuration
-├── apps            # Contains all apps used in project 
-│   ├── core        # App will contain core features
-│   ├── users       # App will contain all user features
-├── static          # contains subfolders with styles of templates
+├── static/         # Directory for styles of templates        
+├── templates/      # Directory for template of specific app module        
+├── user_panel      # App module - for user account features
+├── users           # App module - basic user features
 ```
 to set static in project just write inside settings.py this line:
 ```STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]``` 

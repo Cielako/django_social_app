@@ -7,20 +7,20 @@
 # DJANGO
 * Utworzenie projektu - django-admin startproject project
 * Przechodzimy do utworzonego projektu - cd project
-* Utworzenie aplikacji na serwerze - Python manage.py startapp api
+* Utworzenie aplikacji na serwerze - Python manage.py startapp nazwa_aplikacji
 * Jeżeli pomyliliśmy się w nazwie aplikacji należy usunąć folder z aplikacją i
 skorzystać z komendy -  python manage.py remove_stale_contenttypes --include-stale-apps
-* Uruchomienie serwera Django - python GymProject\manage.py runserver 
-* Wstępna migracja danych ( wrazie gdyby baza się wysypała) -  python GymProject\manage.py makemigrations app
-* Migracja danych (weryfikacja) - python GymProject\manage.py makemigrations 
-* Migracja danych (realizacja) - python GymProjectt\manage.py migrate
-* Zbieramy pliki statyczne - python GymProject\manage.py collectstatic  
-* Utworzenie super użytkownika (przechowujemy w bazie danych Firebase)  - python GymProject\manage.py createsuperuser
+* Uruchomienie serwera Django - python project\manage.py runserver 
+* Wstępna migracja danych ( wrazie gdyby baza się wysypała) -  python project\manage.py makemigrations app
+* Migracja danych (weryfikacja) - python project\manage.py makemigrations 
+* Migracja danych (realizacja) - python project\manage.py migrate
+* Zbieramy pliki statyczne - python project\manage.py collectstatic  
+* Utworzenie super użytkownika (przechowujemy w bazie danych Firebase)  - python project\manage.py createsuperuser
 
 * Routing w naszej aplikaji umożliwia nawigowanie między komponentami 
 aplikacji bez potrzeby przeładowywania jej.
 
-* views - plik który odpowiada za renderowanie stron, a raczek określa
+* views - plik który odpowiada za renderowanie stron, określa
 co dokładnie ma zostać wyrenderowane. 
 
 
