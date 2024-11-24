@@ -17,7 +17,7 @@
             <h1>Panel</h1>
         </div>
         <div class="navbar-right">
-            <span class="user-name">Witaj, {{ user.first_name }}</span>
+            <span class="user-name">Witaj, {{ user.username }}</span>
             <div class="profile-picture" onclick="toggleMenu()">
                 {% if user.profile.picture %}
                     <img src="{{ user.profile.picture.url }}" alt="Profile Picture">
