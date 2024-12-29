@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Logowanie</title>
+</head>
+<body>
+    <h2>Zaloguj się</h2>
+    <!-- Okienko z formularzem logowania -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Zaloguj się</h2>
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="username">Nazwa użytkownika lub adres e-mail</label>
+                    <input type="text" id="username" name="username" placeholder="Wpisz nazwę użytkownika" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Hasło</label>
+                    <input type="password" id="password" name="password" placeholder="Wpisz hasło" required>
+                </div>
+                <div class="form-group remember-me">
+                    <input type="checkbox" id="remember_me" name="remember_me">
+                    <label for="remember_me">Zapamiętaj mnie</label>
+                </div>
+                <button type="submit" class="submit-button">Zaloguj się</button>
+            </form>
+            
+            <p>Nie masz konta? <a href="{% url 'register' %}">Zarejestruj się</a></p>
+        </div>
+    </div>
+    
+
+    {% if next %}
+        <input type="hidden" name="next" value="{{ next }}" />  <!-- Strona logowania otworzy się użytkownikowi, kiedy chce wejść na stronę, an której ma być zalogowany. Po pomyślnym logowaniu nie wejdzie do panelu użytkownika, tylko na stronę, na którą próbował wejść wcześniej. -->
+    {% endif %}
+
+
+    <script>
+        // Pobranie elementów modalnych
+        const modal = document.getElementById("loginModal");
+        const openModalButton = document.getElementById("openModal");
+        const closeModalButton = document.querySelector(".close-btn");
+    
+        // Funkcja otwierania modala
+        openModalButton.addEventListener("click", () => {
+            modal.style.display = "flex"; // Wyświetla modal
+            document.body.style.overflow = "hidden"; // Blokuje przewijanie
+        });
+    
+        // Funkcja zamykania modala
+        closeModalButton.addEventListener("click", () => {
+            modal.style.display = "none"; // Ukrywa modal
+            document.body.style.overflow = "auto"; // Przywraca przewijanie
+        });
+    
+        // Zamykanie modala po kliknięciu w tło
+        window.addEventListener("click", (e) => {
+            if (e.target === modal) {
+                modal.style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+        });
+    </script>
+
+</body>
+</html>

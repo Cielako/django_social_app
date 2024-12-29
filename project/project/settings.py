@@ -43,13 +43,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    
+
     "rest_framework",
     # if u wish to use apps form subfoldersjust rename variable name
     # in each app u wish to example: name=apps.newapp and use it here
-    "core", 
+    "core",
     "users",
-    "user_panel"
+    "user_panel",
+    "django_rename_app"
 ]
 
 
@@ -129,11 +130,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # AUTH_USER_MODEL - Lets our project know we changed default auth user model
 # AUTHENTICATION_BACKENDS - Changing standard behaviour of authentication
-AUTH_USER_MODEL = 'users.CustomUser' 
+AUTH_USER_MODEL = 'users.CustomUser'
 AUTHENTICATION_BACKENDS = [
     'users.backends.UsernameOrEmailBackend',  # Your custom backend
     'django.contrib.auth.backends.ModelBackend',  # Default backend
-] # nowy 
+] # nowy
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
@@ -159,19 +160,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 
-#STATIC_URL = prefix or URL prepend to your static files 
+#STATIC_URL = prefix or URL prepend to your static files
 #STATICFILES_DIRS - django will search here for static files
 #STATIC_ROOT - folder where static files will be stored after using manage.py
 #MEDIA ROOT - folder where files uploaded using FileField will go
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [ # Here
-    BASE_DIR / 'core/static/', 
+    BASE_DIR / 'core/static/',
     BASE_DIR / 'users/static',
     BASE_DIR / 'project/static',
     BASE_DIR / 'user_panel/static',
 ]
 #STATICFILES_ROOT = os.path.join(BASE_DIR, "static")
-STATIC_ROOT = BASE_DIR / "static" 
+STATIC_ROOT = BASE_DIR / "static"
 MEDIA_ROOT = BASE_DIR / "media"
 
 

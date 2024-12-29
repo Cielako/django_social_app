@@ -41,28 +41,8 @@
 </nav>
 
 <!-- Okienko z formularzem logowania -->
-<div id="loginModal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <h2>Zaloguj się</h2>
-        <form method="post" action="{% url 'login' %}">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="username">Nazwa użytkownika</label>
-                <input type="text" id="username" name="username" placeholder="Wpisz nazwę użytkownika" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Hasło</label>
-                <input type="password" id="password" name="password" placeholder="Wpisz hasło" required>
-            </div>
-            <div class="form-group remember-me">
-                <input type="checkbox" id="remember_me" name="remember_me">
-                <label for="remember_me">Zapamiętaj mnie</label>
-            </div>
-            <button type="submit" class="submit-button">Zaloguj się</button>
-        </form>
-    </div>
-</div>
+{% include 'users/login.html' %}
+
 
 <!-- Sekcja pełnoekranowa (hero) z nagłówkiem na środku -->
 <div class="hero-section">
@@ -105,33 +85,5 @@
         <p><a href="#">Twitter</a></p>
     </div>
 </div>
-
-<script>
-    // Pobranie elementów modalnych
-    const modal = document.getElementById("loginModal");
-    const openModalButton = document.getElementById("openModal");
-    const closeModalButton = document.querySelector(".close-btn");
-
-    // Funkcja otwierania modala
-    openModalButton.addEventListener("click", () => {
-        modal.style.display = "flex"; // Wyświetla modal
-        document.body.style.overflow = "hidden"; // Blokuje przewijanie
-    });
-
-    // Funkcja zamykania modala
-    closeModalButton.addEventListener("click", () => {
-        modal.style.display = "none"; // Ukrywa modal
-        document.body.style.overflow = "auto"; // Przywraca przewijanie
-    });
-
-    // Zamykanie modala po kliknięciu w tło
-    window.addEventListener("click", (e) => {
-        if (e.target === modal) {
-            modal.style.display = "none";
-            document.body.style.overflow = "auto";
-        }
-    });
-</script>
-
 </body>
 </html>

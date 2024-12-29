@@ -21,6 +21,7 @@ ORIENTATION_CHOICES = {
 
 class Profile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE) # Delete profile when user is deleted
+    first_name = models.CharField(max_length=30, blank=True)
     is_banned = models.BooleanField(default=False)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
     #location = models.
