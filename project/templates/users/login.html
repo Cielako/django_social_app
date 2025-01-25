@@ -66,4 +66,32 @@
     </script>
 
 </body>
+
+<script>
+    const handleLogin = async (username, password) => {
+    try {
+        const response = await fetch('/api/login/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, password })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            // Przechowaj token
+            localStorage.setItem('access_token', data.access_token);
+            
+            // Wykonaj przekierowanie
+            window.location.href = data.redirect_url;  // Przekierowanie na stronę dashboard
+        } else {
+            alert(data.message);  // Pokaż komunikat o błędzie
+        }
+    } catch (error) {
+        console.error('Error during login:', error);
+    }
+};
+</script>
 </html>

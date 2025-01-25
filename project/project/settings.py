@@ -45,12 +45,13 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     "rest_framework",
+    'rest_framework.authtoken',  # For sessions tokens
     # if u wish to use apps form subfoldersjust rename variable name
     # in each app u wish to example: name=apps.newapp and use it here
     "core",
     "users",
     "user_panel",
-    "django_rename_app"
+
 ]
 
 
@@ -135,6 +136,34 @@ AUTHENTICATION_BACKENDS = [
     'users.backends.UsernameOrEmailBackend',  # Your custom backend
     'django.contrib.auth.backends.ModelBackend',  # Default backend
 ] # nowy
+
+# CONFIGURATION Django Rest Framework
+REST_FRAMEWORK = {
+    # Autentykacja - możesz użyć JWT do uwierzytelniania
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',  # JWT Authentication
+        # 'rest_framework.authentication.SessionAuthentication',  # Autentykacja sesji (opcjonalnie)
+    ],
+    
+    # Renderery - możesz zwrócić odpowiedzi w formacie JSON
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ],
+
+    # Opcjonalnie - konfiguracja paginacji (jeśli używasz)
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,  # Liczba elementów na stronę
+}
+
+from datetime import timedelta
+
+# Konfiguracja SimpleJWT (JWT)
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),  # Czas życia tokenu dostępu (np. 1 godzina)
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),  # Czas życia tokenu odświeżania (np. 7 dni)
+    'ROTATE_REFRESH_TOKENS': True,  # Opcja rotacji tokenów odświeżania
+    'BLACKLIST_AFTER_ROTATION': True,  # Opcja czarnej listy tokenów po rotacji
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/

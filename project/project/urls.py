@@ -19,11 +19,14 @@ from django.urls import include, path
 from core import views as core_views
 from users import views as user_views
 
+
 urlpatterns = [
     path("admin/", admin.site.urls),
+
+    
     path('', core_views.index,name="index"),
     path('index/', core_views.index,name="index"),
-    path('users/', include('users.urls')),
+    path('api/', include('users.urls')),
     path('main/', include('user_panel.urls')),
 ]
 
