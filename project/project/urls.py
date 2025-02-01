@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import include, path
 from core import views as core_views
 from users import views as user_views
+from django.conf.urls.i18n import set_language
+from .views import change_language
 
 
 urlpatterns = [
@@ -28,5 +30,7 @@ urlpatterns = [
     path('index/', core_views.index,name="index"),
     path('api/', include('users.urls')),
     path('main/', include('user_panel.urls')),
+    path('set-language/', set_language, name='set_language'),
+    path('change-language/', change_language, name='change_language'),
 ]
 

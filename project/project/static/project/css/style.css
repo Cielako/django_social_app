@@ -312,3 +312,44 @@ body, html {
 body.modal-open {
     overflow: hidden;
 }
+
+.language-selector {
+    position: relative;
+    display: inline-block;
+}
+
+.language-button {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    color: white;
+    cursor: pointer;
+}
+
+.language-menu {
+    display: none;
+    position: absolute;
+    background-color: #212121;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    border: 1px solid #FFD700;
+    border-radius: 5px;
+    z-index: 100;
+    min-width: 100px;
+}
+
+.language-menu a {
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+    transition: background 0.2s;
+}
+
+.language-menu a:hover {
+    color: #FFD700;
+    font-weight: bold;
+}
+
+.language-menu.open {
+    display: block;
+}

@@ -49,6 +49,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     """
     username = models.CharField(_("username"), max_length=35, unique=True)
     email = models.EmailField(_("email address"), max_length=64, unique=True)
+    first_name = models.CharField(max_length=30, default='Imię')
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)  # Fixed typo here
     is_superuser = models.BooleanField(default=False)

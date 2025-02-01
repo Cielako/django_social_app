@@ -9,9 +9,9 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),  # Uzyskanie tokenu dostępu
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),  # Odświeżenie tokenu
     # Twój własny widok logowania
-    path('login/', views.LoginAPIView.as_view(), name='login'),
-    #path('login/', views.login, name='login'),  # Widok logowania
+    #path('login/', views.LoginAPIView.as_view(), name='login'),
+    path('login/', views.login, name='login'),  # Widok logowania
     path('register/', views.register, name='register'), # Widok rejestracji 
-    #path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),  # Widok wylogowania
-    #path('user/', views.user, name='user'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),  # Widok wylogowania
+    path('user/', views.user, name='user'),
 ]

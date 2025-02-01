@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from dotenv import load_dotenv
 from pathlib import Path
+from django.utils.translation import gettext_lazy as _
 
 # Loads all secrets from our secret file
 load_dotenv()
@@ -64,6 +65,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = "project.urls"
@@ -168,7 +170,17 @@ SIMPLE_JWT = {
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
+LANGUAGES = [
+    ('en', _('English')),
+    ('pl', _('Polish')),
+    ('de', _('German')),
+]
+
 LANGUAGE_CODE = "pl"
+
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
 
 LOGIN_REDIRECT_URL = 'user_dashboard'
 

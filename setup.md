@@ -1,30 +1,32 @@
 # VENV
-* Tworzymy wirtualne środowisko python -m venv env
-* Instalujemy wszystkie potrzebne biblioteki pip install -r requirements.txt
-* Aktywacja venv -  .\env\Scripts\activate   
-* Deaktywacja venv - deactivate 
+
+- Tworzymy wirtualne środowisko python -m venv env
+- Instalujemy wszystkie potrzebne biblioteki pip install -r requirements.txt
+- Aktywacja venv - .\env\Scripts\activate
+- Deaktywacja venv - deactivate
 
 # DJANGO
-* Utworzenie projektu - django-admin startproject project
-* Przechodzimy do utworzonego projektu - cd project
-* Utworzenie aplikacji na serwerze - Python manage.py startapp nazwa_aplikacji
-* Jeżeli pomyliliśmy się w nazwie aplikacji należy usunąć folder z aplikacją i
-skorzystać z komendy -  python manage.py remove_stale_contenttypes --include-stale-apps
-* Uruchomienie serwera Django - python project\manage.py runserver 
-* Wstępna migracja danych ( wrazie gdyby baza się wysypała) -  python project\manage.py makemigrations app
-* Migracja danych (weryfikacja) - python project\manage.py makemigrations 
-* Migracja danych (realizacja) - python project\manage.py migrate
-* Zbieramy pliki statyczne - python project\manage.py collectstatic  
-* Utworzenie super użytkownika (przechowujemy w bazie danych Firebase)  - python project\manage.py createsuperuser
 
-* Routing w naszej aplikaji umożliwia nawigowanie między komponentami 
-aplikacji bez potrzeby przeładowywania jej.
+- Utworzenie projektu - django-admin startproject project
+- Przechodzimy do utworzonego projektu - cd project
+- Utworzenie aplikacji na serwerze - Python manage.py startapp nazwa_aplikacji
+- Jeżeli pomyliliśmy się w nazwie aplikacji należy usunąć folder z aplikacją i
+  skorzystać z komendy - python manage.py remove_stale_contenttypes --include-stale-apps
+- Uruchomienie serwera Django - python project\manage.py runserver
+- Wstępna migracja danych ( wrazie gdyby baza się wysypała) - python project\manage.py makemigrations app
+- Migracja danych (weryfikacja) - python project\manage.py makemigrations
+- Migracja danych (realizacja) - python project\manage.py migrate
+- Zbieramy pliki statyczne - python project\manage.py collectstatic
+- Utworzenie super użytkownika (przechowujemy w bazie danych Firebase) - python project\manage.py createsuperuser
 
-* views - plik który odpowiada za renderowanie stron, określa
-co dokładnie ma zostać wyrenderowane. 
+- Routing w naszej aplikaji umożliwia nawigowanie między komponentami
+  aplikacji bez potrzeby przeładowywania jej.
 
+- views - plik który odpowiada za renderowanie stron, określa
+  co dokładnie ma zostać wyrenderowane.
 
-# Opis struktury przykładowego projektu DJANGO 
+# Opis struktury przykładowego projektu DJANGO
+
 ```
 myproject/
 │
@@ -73,13 +75,20 @@ myproject/
 ```
 
 ## Tworzymy konto użytkownika dla naszej bazy danych
-CREATE USER 'admin'@'localhost' IDENTIFIED BY '**********';
-grant all on sitedb.* to 'admin'@'localhost';
 
-## Objaśnienie poszczególnych plików w Django 
+CREATE USER 'admin'@'localhost' IDENTIFIED BY '****\*\*****';
+grant all on sitedb.\* to 'admin'@'localhost';
+
+## Objaśnienie poszczególnych plików w Django
+
 views.py - zwraca odpowiednie widoki
-urls.py - odpowiada za mapowanie naszych stron 
-models.py - w tym pliku definiujemy nasze pola i zachowania danych które przechowujemy 
-admin.py - w tym pliku rejestrujemy nasze modele, aby  były widoczne w panelu administracyjnym 
-static -  w tym folderze przechowujemy pliki CSS, JS zdjęcia itp. 
+urls.py - odpowiada za mapowanie naszych stron
+models.py - w tym pliku definiujemy nasze pola i zachowania danych które przechowujemy
+admin.py - w tym pliku rejestrujemy nasze modele, aby były widoczne w panelu administracyjnym
+static - w tym folderze przechowujemy pliki CSS, JS zdjęcia itp.
 templates - tutaj przechowujemy pliki html, często zawiera się w nich csrf_token (zabezpieczenie przed niekontrolowanym wykonaniem operacji).
+
+## Tłumaczenie strony/zmiana języka
+
+Jeśli podstrona ma obsługiwać zmianę języka, to pod {% load static %} trzeba dodać {% load i18n %} i wtedy można tłumaczyć w taki sposób: <p>{% trans "Witamy na naszej stronie!" %}</p>
+Po dodaniu zmiennych trzeba skompilować pliki .po do folderu locale: '''django-admin makemessages -l pl -l en -l de''' (tu dla trzech języków), a następnie dodać tłumaczenia w tych plikach. Po dodaniu tłumaczeń trzeba zrobić: '''django-admin compilemessages''' i tłumaczenie powinno działać. Wybrany język zapisuje się w cookies.
